@@ -1,33 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+import svg from '../assets/react.svg'
 import './App.css'
 
+import SearchResults from './components/searchResults/searchResults';
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [trackData, setTrackData] = useState([
+    { title: "FEiN", author: "Travis Scott", image: svg },
+    { title: "Sigma Boy", author: "Russian Lady", image: svg },
+    { title: "Corazon", author: "Maluma", image: svg }
+  ]);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <SearchResults tracks={trackData}/>
     </>
   )
 }
