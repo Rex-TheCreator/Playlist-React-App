@@ -8,7 +8,7 @@ function SearchResults(props) {
     return (
         <div className="search-results">
             {tracks.length > 0 ? (
-                <TrackList tracks={tracks} />
+                <TrackList tracks={tracks} trackAction={props.trackAction} actionSignifier={props.actionSignifier}/>
             ) : (
                 <p>No results found</p>
             )}

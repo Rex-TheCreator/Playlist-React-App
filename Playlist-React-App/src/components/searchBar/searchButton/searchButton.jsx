@@ -2,7 +2,11 @@ import React from "react";
 
 function SearchButton(props) {
   return (
-    <button onClick={props.onClick}>
+    <button 
+    className="search-button"
+    aria-label="Search Tracks"
+    onClick={props.onClick}
+    >
       Search
     </button>
   );

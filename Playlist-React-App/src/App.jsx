@@ -14,17 +14,44 @@ function App() {
   ]);
   const [playlistTracks, setPlaylistTracks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [playlistName, setPlaylistName] = useState("My Playlist");
 
-  function search(){
+  function search() {
     alert("Searching for " + searchTerm);
     //setPlaylistTracks(trackData.filter(track => track.title.includes(searchTerm)));
   }
+  function save() {
+    alert("Saving playlist: " + playlistName);
+  }
+  function addTrack(track) {
+    if (playlistTracks.find(addedTrack => addedTrack.title === track.title)) {
+      alert("Track already in playlist");
+      return;
+    }
+    setPlaylistTracks(prevTracks => [...prevTracks, track]);
+  }
+  function removeTrack(track) {
+    setPlaylistTracks(prevTracks => prevTracks.filter(playlistTrack => playlistTrack.title !== track.title));
+  }
+
 
   return (
     <>
-      <SearchBar onSearch={setSearchTerm} value={searchTerm} searchButtonFunction={search} />
-      <SearchResults tracks={trackData} />  {/*use 'tracks={trackData.filter(track => track.title.includes(searchTerm))}' later*/}
-      <Playlist tracks={playlistTracks} />
+      <SearchBar
+        onSearch={setSearchTerm}
+        value={searchTerm}
+        searchButtonFunction={search} />
+      <SearchResults
+        tracks={trackData}
+        trackAction={addTrack}
+        actionSignifier="+" />  {/*use 'tracks={trackData.filter(track => track.title.includes(searchTerm))}' later*/}
+      <Playlist
+        tracks={playlistTracks}
+        playlistName={playlistName}
+        setPlaylistName={setPlaylistName}
+        trackAction={removeTrack}
+        actionSignifier="-"
+        saveButtonFunction={save} />
     </>
   )
 }

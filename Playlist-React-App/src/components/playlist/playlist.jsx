@@ -7,13 +7,13 @@ function Playlist(props) {
 
     return (
         <div className="playlist">
-            <input id="playlist-title" type="text" placeholder="Insert Playlist Name" />
+            <input id="playlist-title" type="text" value={props.playlistName} onChange={(e) => props.setPlaylistName(e.target.value)} />
             {tracks.length > 0 ? (
-                <TrackList tracks={tracks} />
+                <TrackList tracks={tracks} trackAction={props.trackAction} actionSignifier={props.actionSignifier} />
             ) : (
                 <p>Looks empty here... Add some songs!</p>
             )}
-            <SaveToSpotifyBtn onSave={() => alert("Save to Spotify clicked")} />
+            <SaveToSpotifyBtn onSave={props.saveButtonFunction} />
         </div>
     );
 };

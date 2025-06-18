@@ -1,15 +1,18 @@
 import React from "react";
 import Track from "./track/track";
 
-function TrackList({ tracks }) {
+function TrackList({ tracks, trackAction, actionSignifier }) {
     return (
         <div className="track-list">
             {tracks.map((track, index) => (
                 <Track
-                    trackIndex={index}
+                    key={index}
                     trackTitle={track.title}
                     trackAuthor={track.author}
                     trackImage={track.image}
+                    track={track}
+                    action={trackAction}
+                    actionSignifier={actionSignifier}
                 />
             ))}
         </div>
